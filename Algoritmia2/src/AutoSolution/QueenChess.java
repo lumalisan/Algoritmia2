@@ -20,13 +20,18 @@ public class QueenChess extends JPanel {
 
     public QueenChess() {
 
-        createCells();
+        if (size > 0) {
+            createCells();
 
-        backtracking(y, x);
+            backtracking(y, x);
 
-        System.out.println("Total number of solutions : " + solutions);
+            System.out.println("Total number of solutions : " + solutions);
 
-        Chess.show = true;
+            Chess.show = true;
+        } else {
+            System.out.println("No solution");
+            System.exit(0);
+        }
     }
 
     public final void backtracking(int culumna, int row) {

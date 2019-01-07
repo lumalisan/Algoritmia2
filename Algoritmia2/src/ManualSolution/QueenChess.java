@@ -1,7 +1,6 @@
 package ManualSolution;
 
 import java.awt.Graphics;
-import static java.lang.System.exit;
 import javax.swing.JPanel;
 
 /**
@@ -31,11 +30,11 @@ public class QueenChess extends JPanel {
 
             if (queens != size) {
                 System.out.println("No solution");
-                exit(0);
+                System.exit(0);
             }
         } else {
             System.out.println("No solution");
-            exit(0);
+            System.exit(0);
         }
 
     }
@@ -52,7 +51,7 @@ public class QueenChess extends JPanel {
                 if (queens == size) {
                     if (table[y][x].getNum() == 0) {
                         System.out.println("No solution");
-                        exit(0);
+                        System.exit(0);
                     }
                     showTable();
 

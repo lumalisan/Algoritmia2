@@ -28,8 +28,12 @@ public class Chess extends JPanel {
             int tam = Integer.parseInt(br.readLine());
             System.out.print("Insertar coordenada X de inicio: ");
             int xpos = Integer.parseInt(br.readLine());
+            if (xpos < 0)
+                throw new NumberFormatException();
             System.out.print("Insertar coordenada Y de inicio: ");
             int ypos = Integer.parseInt(br.readLine());
+            if (ypos < 0)
+                throw new NumberFormatException();
             
             QueenChess.x = xpos;
             QueenChess.y = ypos;
