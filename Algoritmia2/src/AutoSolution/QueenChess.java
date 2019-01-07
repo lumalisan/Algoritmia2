@@ -13,7 +13,7 @@ public class QueenChess extends JPanel {
     private boolean founded = false;
     public static int size = 2;
     public static int x = 0; //fila
-    public static int y = 0; //columna
+    public static int y = 0; //culumna
 
     private static int queens = 0;
     public static Cell[][] table = new Cell[size][size];
@@ -29,23 +29,23 @@ public class QueenChess extends JPanel {
         Chess.show = true;
     }
 
-    public final void backtracking(int columna, int fila) {
+    public final void backtracking(int culumna, int fila) {
 
-        columna--;
-        while (columna != size - 1) {
+        culumna--;
+        while (culumna != size - 1) {
 
-            columna++;
+            culumna++;
 
-            if (itworks(columna, fila)) {
-                add(columna, fila);
+            if (itworks(culumna, fila)) {
+                add(culumna, fila);
                 if (queens == size) {
                     solutions++;
-                    remove(columna, fila);
+                    remove(culumna, fila);
                 } else {
 
                     backtracking(0, fila + 1);
 
-                    remove(columna, fila);
+                    remove(culumna, fila);
 
                 }
             }
@@ -112,7 +112,7 @@ public class QueenChess extends JPanel {
                         table[i][j].setCorrect(false);
                     }
                     j = jj;
-                    
+
                     while (j + 1 != size) {
 
                         j++;
@@ -169,7 +169,7 @@ public class QueenChess extends JPanel {
         if (table[i][j].getNum() == 1) {
             return false;
         }
-        
+
         while (i + 1 != size) {
             i++;
             if (table[i][j].getNum() == 1) {
@@ -195,7 +195,7 @@ public class QueenChess extends JPanel {
             }
         }
         j = jj;
-        
+
         while (j + 1 != size) {
 
             j++;
@@ -204,7 +204,7 @@ public class QueenChess extends JPanel {
             }
         }
         j = jj;
-        
+
         while (i + 1 != size && j - 1 != -1) {
 
             i++;
@@ -215,7 +215,7 @@ public class QueenChess extends JPanel {
         }
         i = ii;
         j = jj;
-        
+
         while (i + 1 != size && j + 1 != size) {
 
             i++;
@@ -226,7 +226,7 @@ public class QueenChess extends JPanel {
         }
         i = ii;
         j = jj;
-        
+
         while (i - 1 != -1 && j - 1 != -1) {
 
             i--;
@@ -237,7 +237,7 @@ public class QueenChess extends JPanel {
         }
         i = ii;
         j = jj;
-        
+
         while (i - 1 != -1 && j + 1 != size) {
 
             i--;
