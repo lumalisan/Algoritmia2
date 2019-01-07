@@ -59,45 +59,52 @@ public class Chess extends JPanel {
 
     public static void main(String[] args) {
 
-        try {
-            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        Thread t = new Thread() {
+            @Override
+            public void run() {
+                try {
+                    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-            System.out.print("Insertar tamaño del tablero: ");
-            int tam = Integer.parseInt(br.readLine());
+                    System.out.print("Insertar tamaño del tablero: ");
+                    int tam = Integer.parseInt(br.readLine());
 
-            QueenChess.size = tam;
+                    QueenChess.size = tam;
 
-            createCells();
-            JFrame frame = new JFrame();
-            frame.setSize((int) size * 50, (size * 50) + 21);
-            frame.getContentPane().add(new Chess());
-            frame.setLocationRelativeTo(null);
-            frame.setBackground(Color.LIGHT_GRAY);
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setVisible(true);
-            frame.setAlwaysOnTop(true);
-            QueenChess Aj = new QueenChess();
-            Aj.setVisible(true);
+                    createCells();
+                    JFrame frame = new JFrame();
+                    frame.setSize((int) size * 50, (size * 50) + 21);
+                    frame.getContentPane().add(new Chess());
+                    frame.setLocationRelativeTo(null);
+                    frame.setBackground(Color.LIGHT_GRAY);
+                    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    frame.setVisible(true);
+                    frame.setAlwaysOnTop(true);
+                    QueenChess Aj = new QueenChess();
+                    Aj.setVisible(true);
 
-            if (show == true) {
-                System.out.println("Showing results...");
-                JFrame results = new JFrame("Results");
-                results.setContentPane(new Results());
+                    if (show == true) {
+                        System.out.println("Showing results...");
+                        JFrame results = new JFrame("Results");
+                        results.setContentPane(new Results());
 
-                results.setVisible(true);
-                results.setSize(new Dimension(300, 260));
-                results.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                results.setLocationRelativeTo(null);
-                results.setAlwaysOnTop(true);
+                        results.setVisible(true);
+                        results.setSize(new Dimension(300, 260));
+                        results.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                        results.setLocationRelativeTo(null);
+                        results.setAlwaysOnTop(true);
+                    }
+
+                } catch (IOException ex) {
+                    System.out.println("Error en la lectura por teclado");
+                    System.exit(1);
+                } catch (NumberFormatException e) {
+                    System.out.println("Error en la introducción de los números");
+                    System.exit(1);
+                }
             }
 
-        } catch (IOException ex) {
-            System.out.println("Error en la lectura por teclado");
-            System.exit(1);
-        } catch (NumberFormatException e) {
-            System.out.println("Error en la introducción de los números");
-            System.exit(1);
-        }
-    }
+        };
+        t.start();
 
+    }
 }
