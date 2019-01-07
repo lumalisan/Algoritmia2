@@ -10,32 +10,35 @@ import javax.swing.JPanel;
  */
 public class QueenChess extends JPanel {
 
-    public static int tamaño = 10;
-    public static int empezarx = 0; //fila
-    public static int empezary = 0; //columna
+    public static int size = 10;
+    public static int x = 0; //fila
+    public static int y = 0; //columna
 
-    private static int Ndamas = 0;
-    public static Cell[][] tablero = new Cell[tamaño][tamaño];
+    private static int queens = 0;
+    public static Cell[][] table = new Cell[size][size];
 
     public QueenChess() {
-        if (tamaño > 3) {
+        if (size > 3) {
 
-            crearcasillas();
+            createCells();
 
-            if (empezarx != 0) {
-                meterdama(empezary, empezarx);
+            if (x != 0) {
+                add(y, x);
                 backtracking(0, 0);
             } else {
-                backtracking(empezary, empezarx);
+                backtracking(y, x);
             }
 
-            if (Ndamas != tamaño) {
-                System.out.println("No hay solucion a este problema");
+            if (queens != size) {
+                System.out.println("No solution");
                 exit(0);
             }
 
+        } else if (size == 1){
+            createCells();
+            System.out.println("Solution = 1");
         } else {
-            System.out.println("tamaño demasiado pequeño para buscar una solucion");
+            System.out.println("No solution");
             exit(0);
         }
 
@@ -44,18 +47,18 @@ public class QueenChess extends JPanel {
     public final void backtracking(int columna, int fila) {
 
         columna--;
-        while (columna != tamaño - 1) {
+        while (columna != size - 1) {
 
             columna++;
 
-            if (esvalido(columna, fila)) {
-                meterdama(columna, fila);
-                if (Ndamas == tamaño) {
-                    if (tablero[empezary][empezarx].getN() == 0) {
-                        System.out.println("No hay solucion a este problema");
+            if (isCorrect(columna, fila)) {
+                add(columna, fila);
+                if (queens == size) {
+                    if (table[y][x].getNum() == 0) {
+                        System.out.println("No solution");
                         exit(0);
                     }
-                    printeartablero();
+                    showTable();
 
                     while (true) {
 
@@ -66,7 +69,7 @@ public class QueenChess extends JPanel {
                     } else {
                         backtracking(0, fila + 1);
                     }
-                    quitardama(columna, fila);
+                    remove(columna, fila);
                 }
             }
 
@@ -75,106 +78,104 @@ public class QueenChess extends JPanel {
     }
 
     public boolean Damaenestafila(int fila) {
-        for (int l = 0; l < tamaño; l++) {
-            if (tablero[l][fila].getN() == 1) {
+        for (int l = 0; l < size; l++) {
+            if (table[l][fila].getNum() == 1) {
                 return true;
             }
         }
         return false;
     }
 
-    public final void meterdama(int i, int j) {
-        tablero[i][j].setN(1); //colocar dama
-        Ndamas++;
-        actualizar();
+    public final void add(int i, int j) {
+        table[i][j].setNum(1);
+        queens++;
+        update();
     }
 
-    public void quitardama(int i, int j) {
-        tablero[i][j].setN(0); //colocar dama
-        Ndamas--;
-        actualizar();
+    public void remove(int i, int j) {
+        table[i][j].setNum(0);
+        queens--;
+        update();
     }
 
-    public void printeartablero() {
-        for (int k = 0; k < tamaño; k++) {
-            for (int l = 0; l < tamaño; l++) {
-                System.out.println(tablero[k][l]);
+    public void showTable() {
+        for (int k = 0; k < size; k++) {
+            for (int l = 0; l < size; l++) {
+                System.out.println(table[k][l]);
             }
         }
 
     }
 
-    public void actualizar() {
+    public void update() {
 
-        for (int i = 0; i < tamaño; i++) {
-            for (int j = 0; j < tamaño; j++) {
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
 
-                if (tablero[i][j].getN() == 1) {
+                if (table[i][j].getNum() == 1) {
                     int ii = i;
                     int jj = j;
-                    tablero[i][j].setValida(false);
-                    //derecha
-                    while (i + 1 != tamaño) {
+                    table[i][j].setCorrect(false);
+
+                    while (i + 1 != size) {
                         i++;
-                        tablero[i][j].setValida(false);
+                        table[i][j].setCorrect(false);
                     }
                     i = ii;
 
-                    //izquierda
                     while (i - 1 != -1) {
 
                         i--;
-                        tablero[i][j].setValida(false);
+                        table[i][j].setCorrect(false);
                     }
                     i = ii;
 
-                    //arriba
                     while (j - 1 != -1) {
 
                         j--;
-                        tablero[i][j].setValida(false);
+                        table[i][j].setCorrect(false);
                     }
                     j = jj;
-                    //abajo
-                    while (j + 1 != tamaño) {
+
+                    while (j + 1 != size) {
 
                         j++;
-                        tablero[i][j].setValida(false);
+                        table[i][j].setCorrect(false);
                     }
                     j = jj;
-                    //Diagonal derecha arriba
-                    while (i + 1 != tamaño && j - 1 != -1) {
+
+                    while (i + 1 != size && j - 1 != -1) {
 
                         i++;
                         j--;
-                        tablero[i][j].setValida(false);
+                        table[i][j].setCorrect(false);
                     }
                     i = ii;
                     j = jj;
-                    //Diagonal derecha abajo
-                    while (i + 1 != tamaño && j + 1 != tamaño) {
+
+                    while (i + 1 != size && j + 1 != size) {
 
                         i++;
                         j++;
-                        tablero[i][j].setValida(false);
+                        table[i][j].setCorrect(false);
                     }
                     i = ii;
                     j = jj;
-                    //Diagonal izquierda arriba
+
                     while (i - 1 != -1 && j - 1 != -1) {
 
                         i--;
                         j--;
-                        tablero[i][j].setValida(false);
+                        table[i][j].setCorrect(false);
                     }
                     i = ii;
                     j = jj;
-                    //Diagonal izquierda abajo
-                    while (i - 1 != -1 && j + 1 != tamaño) {
+
+                    while (i - 1 != -1 && j + 1 != size) {
 
                         i--;
                         j++;
-                        tablero[i][j].setValida(false);
+                        table[i][j].setCorrect(false);
                     }
                     i = ii;
                     j = jj;
@@ -184,90 +185,88 @@ public class QueenChess extends JPanel {
 
     }
 
-    public boolean esvalido(int i, int j) {
+    public boolean isCorrect(int i, int j) {
 
         int ii = i;
         int jj = j;
 
-        if (tablero[i][j].getN() == 1) {
+        if (table[i][j].getNum() == 1) {
             return false;
         }
-        //derecha
-        while (i + 1 != tamaño) {
+
+        while (i + 1 != size) {
             i++;
-            if (tablero[i][j].getN() == 1) {
+            if (table[i][j].getNum() == 1) {
                 return false;
             }
         }
         i = ii;
 
-        //izquierda
         while (i - 1 != -1) {
 
             i--;
-            if (tablero[i][j].getN() == 1) {
+            if (table[i][j].getNum() == 1) {
                 return false;
             }
         }
         i = ii;
 
-        //arriba
         while (j - 1 != -1) {
 
             j--;
-            if (tablero[i][j].getN() == 1) {
+            if (table[i][j].getNum() == 1) {
                 return false;
             }
         }
         j = jj;
-        //abajo
-        while (j + 1 != tamaño) {
+
+        while (j + 1 != size) {
 
             j++;
-            if (tablero[i][j].getN() == 1) {
+            if (table[i][j].getNum() == 1) {
                 return false;
             }
         }
         j = jj;
-        //Diagonal derecha arriba
-        while (i + 1 != tamaño && j - 1 != -1) {
+
+        while (i + 1 != size && j - 1 != -1) {
 
             i++;
             j--;
-            if (tablero[i][j].getN() == 1) {
+            if (table[i][j].getNum() == 1) {
                 return false;
             }
         }
         i = ii;
         j = jj;
-        //Diagonal derecha abajo
-        while (i + 1 != tamaño && j + 1 != tamaño) {
+
+        while (i + 1 != size && j + 1 != size) {
 
             i++;
             j++;
-            if (tablero[i][j].getN() == 1) {
+            if (table[i][j].getNum() == 1) {
                 return false;
             }
         }
         i = ii;
         j = jj;
-        //Diagonal izquierda arriba
+
         while (i - 1 != -1 && j - 1 != -1) {
 
             i--;
             j--;
-            if (tablero[i][j].getN() == 1) {
+            if (table[i][j].getNum() == 1) {
                 return false;
             }
         }
         i = ii;
         j = jj;
-        //Diagonal izquierda abajo
-        while (i - 1 != -1 && j + 1 != tamaño) {
+        
+        while (i - 1 != -1 && j + 1 != size) {
 
             i--;
             j++;
-            if (tablero[i][j].getN() == 1) {
+            if (table[i][j].getNum() == 1) {
                 return false;
             }
 
@@ -276,18 +275,17 @@ public class QueenChess extends JPanel {
 
     }
 
-    public static void crearcasillas() {
-        for (int i = 0; i < tamaño; i += 1) {
-            for (int j = 0; j < tamaño; j += 1) {
+    public static void createCells() {
+        for (int i = 0; i < size; i += 1) {
+            for (int j = 0; j < size; j += 1) {
                 Cell casilla = new Cell();
-                tablero[i][j] = casilla;
+                table[i][j] = casilla;
             }
         }
 
     }
 
     public void paint(Graphics g) {
-
     }
 
 }

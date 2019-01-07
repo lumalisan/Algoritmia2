@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package SolucionManual;
 
 /**
@@ -11,33 +6,29 @@ package SolucionManual;
  */
 public class Cell {
 
-    private int n;
-    private boolean valida;
+    private int num;
+    private boolean correct;
 
     public Cell() {
-        this.n = 0;
-        this.valida = true;
+        this.num = 0;
+        this.correct = true;
     }
 
     @Override
     public String toString() {
-        return "Casilla{" + "n=" + n + ", valida=" + valida + '}';
+        return "Cell -->" + "number = " + num + "/ is correct = " + correct;
     }
 
-    public int getN() {
-        return n;
+    public int getNum() {
+        return num;
     }
 
-    public void setN(int n) {
-        this.n = n;
+    public void setNum(int num) {
+        this.num = num;
     }
 
-    public boolean isValida() {
-        return valida;
-    }
-
-    public void setValida(boolean valida) {
-        this.valida = valida;
+    public void setCorrect(boolean correct) {
+        this.correct = correct;
     }
 
 }

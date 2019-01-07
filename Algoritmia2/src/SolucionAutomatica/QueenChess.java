@@ -15,7 +15,7 @@ public class QueenChess extends JPanel {
     public static int x = 0; //fila
     public static int y = 0; //columna
 
-    private static int chesses = 0;
+    private static int queens = 0;
     public static Cell[][] table = new Cell[size][size];
 
     public QueenChess() {
@@ -38,7 +38,7 @@ public class QueenChess extends JPanel {
 
             if (itworks(columna, fila)) {
                 add(columna, fila);
-                if (chesses == size) {
+                if (queens == size) {
                     solutions++;
                     remove(columna, fila);
                 } else {
@@ -65,13 +65,13 @@ public class QueenChess extends JPanel {
 
     public void add(int i, int j) {
         table[i][j].setNum(1);
-        chesses++;
+        queens++;
         update();
     }
 
     public void remove(int i, int j) {
         table[i][j].setNum(0);
-        chesses--;
+        queens--;
         update();
     }
 
