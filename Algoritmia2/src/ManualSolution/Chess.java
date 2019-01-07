@@ -18,6 +18,9 @@ import static ManualSolution.QueenChess.size;
 import static ManualSolution.QueenChess.y;
 import static ManualSolution.QueenChess.x;
 import static ManualSolution.QueenChess.createCells;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 /**
  *
@@ -27,54 +30,29 @@ public class Chess extends JPanel {
     
     public static void main(String[] args) {
         
-        JFrame select_f = new JFrame("Elige la posición de inicio");
-        JPanel select_p = new JPanel();
-        select_p.setLayout(new BoxLayout(select_p,BoxLayout.Y_AXIS));
-        select_f.setSize(280, 220);
-        JLabel posx_lab = new JLabel("Coordenada X");
-        posx_lab.setHorizontalAlignment(0);
-        JLabel posy_lab = new JLabel("Coordenada Y");
-        posy_lab.setHorizontalAlignment(0);
-        JLabel dim_lab = new JLabel("Tamaño del tablero");
-        dim_lab.setHorizontalAlignment(0);
-        JTextField posx_tf = new JTextField();
-        posx_tf.setAlignmentX(0);
-        JTextField posy_tf = new JTextField();
-        posy_tf.setAlignmentX(0);
-        JTextField dim_tf = new JTextField();
-        dim_tf.setAlignmentX(0);
-        JSeparator sep = new JSeparator(JSeparator.HORIZONTAL);
-        sep.setAlignmentX(0); sep.setMaximumSize(new Dimension(150,5));
-        JButton start = new JButton("Inicio");
-        start.setAlignmentX(0);
-        
-        select_p.add(Box.createVerticalStrut(10));
-        select_p.add(posx_lab); select_p.add(posx_tf);
-        select_p.add(Box.createVerticalStrut(5));
-        select_p.add(posy_lab); select_p.add(posy_tf);
-        select_p.add(Box.createVerticalStrut(5));
-        select_p.add(dim_lab); select_p.add(dim_tf);
-        select_p.add(Box.createVerticalStrut(3));
-        select_p.add(sep);
-        select_p.add(Box.createVerticalStrut(3));
-        select_p.add(start);
-        select_p.add(Box.createVerticalStrut(3));
-        
-        select_f.setContentPane(select_p);
-        select_f.setLocationRelativeTo(null);
-        select_f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        select_f.setResizable(false);
-        select_f.setVisible(true);
-        
-        start.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("lol");
-            }
-        });
-        
-        cont();
-        
+        try {
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            
+            System.out.print("Insertar tamaño del tablero: ");
+            int tam = Integer.parseInt(br.readLine());
+            System.out.print("Insertar coordenada X de inicio: ");
+            int xpos = Integer.parseInt(br.readLine());
+            System.out.print("Insertar coordenada Y de inicio: ");
+            int ypos = Integer.parseInt(br.readLine());
+            
+            QueenChess.x = xpos;
+            QueenChess.y = ypos;
+            QueenChess.size = tam;
+            
+            cont();
+            
+        } catch (IOException ex) {
+            System.out.println("Error en la lectura por teclado");
+            System.exit(1);
+        } catch (NumberFormatException e) {
+            System.out.println("Error en la introducción de los números");
+            System.exit(1);
+        }
     }
     
     @Override
@@ -93,7 +71,7 @@ public class Chess extends JPanel {
                 g.clearRect(i, j, 50, 50);
             }
         }
-        g.setColor(Color.GREEN);
+        g.setColor(Color.YELLOW);
         g.fillRect(y * 50, x * 50, 50, 50);
         int x = 0, y = 0;
 
@@ -113,19 +91,16 @@ public class Chess extends JPanel {
     }
     
     public static void cont() {
+        System.out.println("DEBUG SIZE: " + QueenChess.size);
         createCells();
         JFrame frame = new JFrame();
-        frame.setSize((int) size * 50 + 18, size * 50 + 47);
+        frame.setSize((int) size * 50, (size * 50) + 21);
         frame.getContentPane().add(new Chess());
         frame.setLocationRelativeTo(null);
         frame.setBackground(Color.LIGHT_GRAY);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
-        Chess ex = new Chess();
-        ex.Start();
-    }
-
-    public void Start() {
+        frame.setAlwaysOnTop(true);
         QueenChess ex = new QueenChess();
         ex.setVisible(true);
     }
