@@ -14,8 +14,6 @@ public class QueenChess extends JPanel {
     public static int size = 8;
     public static int x = 0;
     public static int y = 0;
-    public static int x = 0; //row
-    public static int y = 0; //culumna
 
     private static int queens = 0;
     public static Cell[][] table = new Cell[size][size];
