@@ -11,9 +11,9 @@ public class QueenChess extends JPanel {
 
     public static int solutions = 0;
     private boolean founded = false;
-    public static int size = 2;
-    public static int x = 0; //fila
-    public static int y = 0; //columna
+    public static int size = 8;
+    public static int x = 0;
+    public static int y = 0;
 
     private static int queens = 0;
     public static Cell[][] table = new Cell[size][size];
@@ -29,23 +29,23 @@ public class QueenChess extends JPanel {
         Chess.show = true;
     }
 
-    public final void backtracking(int columna, int fila) {
+    public final void backtracking(int culumna, int row) {
 
-        columna--;
-        while (columna != size - 1) {
+        culumna--;
+        while (culumna != size - 1) {
 
-            columna++;
+            culumna++;
 
-            if (itworks(columna, fila)) {
-                add(columna, fila);
+            if (itworks(culumna, row)) {
+                add(culumna, row);
                 if (queens == size) {
                     solutions++;
-                    remove(columna, fila);
+                    remove(culumna, row);
                 } else {
 
-                    backtracking(0, fila + 1);
+                    backtracking(0, row + 1);
 
-                    remove(columna, fila);
+                    remove(culumna, row);
 
                 }
             }
@@ -54,9 +54,9 @@ public class QueenChess extends JPanel {
         founded = false;
     }
 
-    public boolean checkRow(int fila) {
+    public boolean checkRow(int row) {
         for (int l = 0; l < size; l++) {
-            if (table[l][fila].getNum() == 1) {
+            if (table[l][row].getNum() == 1) {
                 return true;
             }
         }

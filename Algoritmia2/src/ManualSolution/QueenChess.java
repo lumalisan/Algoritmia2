@@ -10,7 +10,7 @@ import javax.swing.JPanel;
  */
 public class QueenChess extends JPanel {
 
-    public static int size = 2;
+    public static int size = 8;
     public static int x = 0;
     public static int y = 0;
 
