@@ -10,16 +10,16 @@ import javax.swing.JPanel;
  */
 public class QueenChess extends JPanel {
 
-    public static int size = 10;
-    public static int x = 0; //fila
-    public static int y = 0; //columna
+    public static int size = 8;
+    public static int x = 0;
+    public static int y = 0;
 
     private static int queens = 0;
     public static Cell[][] table = new Cell[size][size];
 
     public QueenChess() {
-        if (size > 3) {
 
+        if (size > 0) {
             createCells();
 
             if (x != 0) {
@@ -33,10 +33,6 @@ public class QueenChess extends JPanel {
                 System.out.println("No solution");
                 exit(0);
             }
-
-        } else if (size == 1){
-            createCells();
-            System.out.println("Solution = 1");
         } else {
             System.out.println("No solution");
             exit(0);
@@ -44,15 +40,15 @@ public class QueenChess extends JPanel {
 
     }
 
-    public final void backtracking(int columna, int fila) {
+    public final void backtracking(int culumnas, int row) {
 
-        columna--;
-        while (columna != size - 1) {
+        culumnas--;
+        while (culumnas != size - 1) {
 
-            columna++;
+            culumnas++;
 
-            if (isCorrect(columna, fila)) {
-                add(columna, fila);
+            if (isCorrect(culumnas, row)) {
+                add(culumnas, row);
                 if (queens == size) {
                     if (table[y][x].getNum() == 0) {
                         System.out.println("No solution");
@@ -64,12 +60,12 @@ public class QueenChess extends JPanel {
 
                     }
                 } else {
-                    if (Damaenestafila(fila + 1)) {
-                        backtracking(0, fila + 2);
+                    if (row(row + 1)) {
+                        backtracking(0, row + 2);
                     } else {
-                        backtracking(0, fila + 1);
+                        backtracking(0, row + 1);
                     }
-                    remove(columna, fila);
+                    remove(culumnas, row);
                 }
             }
 
@@ -77,9 +73,9 @@ public class QueenChess extends JPanel {
 
     }
 
-    public boolean Damaenestafila(int fila) {
+    public boolean row(int row) {
         for (int l = 0; l < size; l++) {
-            if (table[l][fila].getNum() == 1) {
+            if (table[l][row].getNum() == 1) {
                 return true;
             }
         }
@@ -261,7 +257,7 @@ public class QueenChess extends JPanel {
         }
         i = ii;
         j = jj;
-        
+
         while (i - 1 != -1 && j + 1 != size) {
 
             i--;
