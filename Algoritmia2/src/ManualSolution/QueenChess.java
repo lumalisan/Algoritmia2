@@ -73,9 +73,9 @@ public class QueenChess extends JPanel {
 
     }
 
-    public boolean row(int fila) {
+    public boolean row(int row) {
         for (int l = 0; l < size; l++) {
-            if (table[l][fila].getNum() == 1) {
+            if (table[l][row].getNum() == 1) {
                 return true;
             }
         }

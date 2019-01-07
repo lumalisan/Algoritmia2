@@ -14,6 +14,8 @@ public class QueenChess extends JPanel {
     public static int size = 8;
     public static int x = 0;
     public static int y = 0;
+    public static int x = 0; //row
+    public static int y = 0; //culumna
 
     private static int queens = 0;
     public static Cell[][] table = new Cell[size][size];
@@ -112,7 +114,7 @@ public class QueenChess extends JPanel {
                         table[i][j].setCorrect(false);
                     }
                     j = jj;
-                    
+
                     while (j + 1 != size) {
 
                         j++;
@@ -169,7 +171,7 @@ public class QueenChess extends JPanel {
         if (table[i][j].getNum() == 1) {
             return false;
         }
-        
+
         while (i + 1 != size) {
             i++;
             if (table[i][j].getNum() == 1) {
@@ -195,7 +197,7 @@ public class QueenChess extends JPanel {
             }
         }
         j = jj;
-        
+
         while (j + 1 != size) {
 
             j++;
@@ -204,7 +206,7 @@ public class QueenChess extends JPanel {
             }
         }
         j = jj;
-        
+
         while (i + 1 != size && j - 1 != -1) {
 
             i++;
@@ -215,7 +217,7 @@ public class QueenChess extends JPanel {
         }
         i = ii;
         j = jj;
-        
+
         while (i + 1 != size && j + 1 != size) {
 
             i++;
@@ -226,7 +228,7 @@ public class QueenChess extends JPanel {
         }
         i = ii;
         j = jj;
-        
+
         while (i - 1 != -1 && j - 1 != -1) {
 
             i--;
@@ -237,7 +239,7 @@ public class QueenChess extends JPanel {
         }
         i = ii;
         j = jj;
-        
+
         while (i - 1 != -1 && j + 1 != size) {
 
             i--;
