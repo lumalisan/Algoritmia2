@@ -23,7 +23,7 @@ public class Ajedrez extends JPanel {
 
     @Override
     public void paint(Graphics g) {
-        ImageIcon imagen = new ImageIcon(new ImageIcon(getClass().getResource("dama.png")).getImage());
+        ImageIcon imagen = new ImageIcon(new ImageIcon(getClass().getResource("chess.png")).getImage());
         g.fillRect(0, 0, tamaño * 50, tamaño * 50);
 
         for (int i = 0; i <= (tamaño * 50); i += 100) {

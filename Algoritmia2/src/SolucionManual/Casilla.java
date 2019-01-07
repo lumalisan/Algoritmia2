@@ -7,7 +7,7 @@ package SolucionManual;
 
 /**
  *
- * @author mates
+ * @author Izar Castorina, Juanjo Torres, Lisandro Rocha
  */
 public class Casilla {
 
