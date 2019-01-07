@@ -1,16 +1,13 @@
 package AutoSolution;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import static AutoSolution.QueenChess.size;
-import static AutoSolution.QueenChess.solutions;
 import static AutoSolution.QueenChess.createCells;
 import java.awt.Dimension;
-import javax.swing.BoxLayout;
 
 /**
  *
