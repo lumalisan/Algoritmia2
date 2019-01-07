@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tablero.ajedrez;
+package SolucionManual;
 
 import java.awt.Graphics;
 import static java.lang.System.exit;

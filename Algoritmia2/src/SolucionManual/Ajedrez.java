@@ -1,14 +1,14 @@
-package tablero.ajedrez;
+package SolucionManual;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import static tablero.ajedrez.AjedrezReinas.crearcasillas;
-import static tablero.ajedrez.AjedrezReinas.empezarx;
-import static tablero.ajedrez.AjedrezReinas.empezary;
-import static tablero.ajedrez.AjedrezReinas.tamaño;
+import static SolucionManual.AjedrezReinas.crearcasillas;
+import static SolucionManual.AjedrezReinas.empezarx;
+import static SolucionManual.AjedrezReinas.empezary;
+import static SolucionManual.AjedrezReinas.tamaño;
 
 public class Ajedrez extends JPanel {
 

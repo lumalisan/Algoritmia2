@@ -1,8 +1,8 @@
-package ajedrezreinasnsol;
+package SolucionAutomatica;
 
-import static ajedrezreinasnsol.AjedrezReinasNsol.crearcasillas;
-import static ajedrezreinasnsol.AjedrezReinasNsol.tamaño;
-import static ajedrezreinasnsol.AjedrezReinasNsol.totalsoluciones;
+import static SolucionAutomatica.AjedrezReinasNsol.crearcasillas;
+import static SolucionAutomatica.AjedrezReinasNsol.tamaño;
+import static SolucionAutomatica.AjedrezReinasNsol.totalsoluciones;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
