@@ -11,14 +11,14 @@ import javax.swing.JPanel;
 
 public class AjedrezReinasNsol extends JPanel {
 
-    public static int totalsoluciones = 0;
+    public static int solutions = 0;
     private boolean solencontrada = false;
-    public static int tamaño = 11;
+    public static int size = 11;
     public static int empezarx = 0; //fila
     public static int empezary = 0; //columna
 
     private static int Ndamas = 0;
-    public static Casilla[][] tablero = new Casilla[tamaño][tamaño];
+    public static Casilla[][] table = new Casilla[size][size];
 
     public AjedrezReinasNsol() {
 
@@ -26,22 +26,22 @@ public class AjedrezReinasNsol extends JPanel {
 
         metodebacktracking(empezary, empezarx);
 
-        System.out.println("Numero total de soluciones es : " + totalsoluciones);
+        System.out.println("Numero total de soluciones es : " + solutions);
 
-        AjedrezNsol.mostrar = true;
+        AjedrezNsol.show = true;
     }
 
     public void metodebacktracking(int columna, int fila) {
 
         columna--;
-        while (columna != tamaño - 1) {
+        while (columna != size - 1) {
 
             columna++;
 
             if (esvalido(columna, fila)) {
                 meterdama(columna, fila);
-                if (Ndamas == tamaño) {
-                    totalsoluciones++;
+                if (Ndamas == size) {
+                    solutions++;
                     quitardama(columna, fila);
                 } else {
 
@@ -57,8 +57,8 @@ public class AjedrezReinasNsol extends JPanel {
     }
 
     public boolean Damaenestafila(int fila) {
-        for (int l = 0; l < tamaño; l++) {
-            if (tablero[l][fila].getN() == 1) {
+        for (int l = 0; l < size; l++) {
+            if (table[l][fila].getN() == 1) {
                 return true;
             }
         }
@@ -66,21 +66,21 @@ public class AjedrezReinasNsol extends JPanel {
     }
 
     public void meterdama(int i, int j) {
-        tablero[i][j].setN(1); //colocar dama
+        table[i][j].setN(1); //colocar dama
         Ndamas++;
         actualizar();
     }
 
     public void quitardama(int i, int j) {
-        tablero[i][j].setN(0); //colocar dama
+        table[i][j].setN(0); //colocar dama
         Ndamas--;
         actualizar();
     }
 
     public void printeartablero() {
-        for (int k = 0; k < tamaño; k++) {
-            for (int l = 0; l < tamaño; l++) {
-                System.out.println(tablero[k][l]);
+        for (int k = 0; k < size; k++) {
+            for (int l = 0; l < size; l++) {
+                System.out.println(table[k][l]);
             }
         }
 
@@ -88,17 +88,17 @@ public class AjedrezReinasNsol extends JPanel {
 
     public void actualizar() {
 
-        for (int i = 0; i < tamaño; i++) {
-            for (int j = 0; j < tamaño; j++) {
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
 
-                if (tablero[i][j].getN() == 1) {
+                if (table[i][j].getN() == 1) {
                     int ii = i;
                     int jj = j;
-                    tablero[i][j].setValida(false);
+                    table[i][j].setValida(false);
                     //derecha
-                    while (i + 1 != tamaño) {
+                    while (i + 1 != size) {
                         i++;
-                        tablero[i][j].setValida(false);
+                        table[i][j].setValida(false);
                     }
                     i = ii;
 
@@ -106,7 +106,7 @@ public class AjedrezReinasNsol extends JPanel {
                     while (i - 1 != -1) {
 
                         i--;
-                        tablero[i][j].setValida(false);
+                        table[i][j].setValida(false);
                     }
                     i = ii;
 
@@ -114,31 +114,31 @@ public class AjedrezReinasNsol extends JPanel {
                     while (j - 1 != -1) {
 
                         j--;
-                        tablero[i][j].setValida(false);
+                        table[i][j].setValida(false);
                     }
                     j = jj;
                     //abajo
-                    while (j + 1 != tamaño) {
+                    while (j + 1 != size) {
 
                         j++;
-                        tablero[i][j].setValida(false);
+                        table[i][j].setValida(false);
                     }
                     j = jj;
                     //Diagonal derecha arriba
-                    while (i + 1 != tamaño && j - 1 != -1) {
+                    while (i + 1 != size && j - 1 != -1) {
 
                         i++;
                         j--;
-                        tablero[i][j].setValida(false);
+                        table[i][j].setValida(false);
                     }
                     i = ii;
                     j = jj;
                     //Diagonal derecha abajo
-                    while (i + 1 != tamaño && j + 1 != tamaño) {
+                    while (i + 1 != size && j + 1 != size) {
 
                         i++;
                         j++;
-                        tablero[i][j].setValida(false);
+                        table[i][j].setValida(false);
                     }
                     i = ii;
                     j = jj;
@@ -147,16 +147,16 @@ public class AjedrezReinasNsol extends JPanel {
 
                         i--;
                         j--;
-                        tablero[i][j].setValida(false);
+                        table[i][j].setValida(false);
                     }
                     i = ii;
                     j = jj;
                     //Diagonal izquierda abajo
-                    while (i - 1 != -1 && j + 1 != tamaño) {
+                    while (i - 1 != -1 && j + 1 != size) {
 
                         i--;
                         j++;
-                        tablero[i][j].setValida(false);
+                        table[i][j].setValida(false);
                     }
                     i = ii;
                     j = jj;
@@ -171,13 +171,13 @@ public class AjedrezReinasNsol extends JPanel {
         int ii = i;
         int jj = j;
 
-        if (tablero[i][j].getN() == 1) {
+        if (table[i][j].getN() == 1) {
             return false;
         }
         //derecha
-        while (i + 1 != tamaño) {
+        while (i + 1 != size) {
             i++;
-            if (tablero[i][j].getN() == 1) {
+            if (table[i][j].getN() == 1) {
                 return false;
             }
         }
@@ -187,7 +187,7 @@ public class AjedrezReinasNsol extends JPanel {
         while (i - 1 != -1) {
 
             i--;
-            if (tablero[i][j].getN() == 1) {
+            if (table[i][j].getN() == 1) {
                 return false;
             }
         }
@@ -197,37 +197,37 @@ public class AjedrezReinasNsol extends JPanel {
         while (j - 1 != -1) {
 
             j--;
-            if (tablero[i][j].getN() == 1) {
+            if (table[i][j].getN() == 1) {
                 return false;
             }
         }
         j = jj;
         //abajo
-        while (j + 1 != tamaño) {
+        while (j + 1 != size) {
 
             j++;
-            if (tablero[i][j].getN() == 1) {
+            if (table[i][j].getN() == 1) {
                 return false;
             }
         }
         j = jj;
         //Diagonal derecha arriba
-        while (i + 1 != tamaño && j - 1 != -1) {
+        while (i + 1 != size && j - 1 != -1) {
 
             i++;
             j--;
-            if (tablero[i][j].getN() == 1) {
+            if (table[i][j].getN() == 1) {
                 return false;
             }
         }
         i = ii;
         j = jj;
         //Diagonal derecha abajo
-        while (i + 1 != tamaño && j + 1 != tamaño) {
+        while (i + 1 != size && j + 1 != size) {
 
             i++;
             j++;
-            if (tablero[i][j].getN() == 1) {
+            if (table[i][j].getN() == 1) {
                 return false;
             }
         }
@@ -238,18 +238,18 @@ public class AjedrezReinasNsol extends JPanel {
 
             i--;
             j--;
-            if (tablero[i][j].getN() == 1) {
+            if (table[i][j].getN() == 1) {
                 return false;
             }
         }
         i = ii;
         j = jj;
         //Diagonal izquierda abajo
-        while (i - 1 != -1 && j + 1 != tamaño) {
+        while (i - 1 != -1 && j + 1 != size) {
 
             i--;
             j++;
-            if (tablero[i][j].getN() == 1) {
+            if (table[i][j].getN() == 1) {
                 return false;
             }
 
@@ -259,10 +259,10 @@ public class AjedrezReinasNsol extends JPanel {
     }
 
     public static void crearcasillas() {
-        for (int i = 0; i < tamaño; i += 1) {
-            for (int j = 0; j < tamaño; j += 1) {
+        for (int i = 0; i < size; i += 1) {
+            for (int j = 0; j < size; j += 1) {
                 Casilla casilla = new Casilla();
-                tablero[i][j] = casilla;
+                table[i][j] = casilla;
             }
         }
 
