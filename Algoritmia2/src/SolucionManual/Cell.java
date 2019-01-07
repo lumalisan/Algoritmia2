@@ -3,18 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package SolucionAutomatica;
+package SolucionManual;
 
 /**
  *
  * @author Izar Castorina, Juanjo Torres, Lisandro Rocha
  */
-public class Casilla {
+public class Cell {
 
     private int n;
     private boolean valida;
 
-    public Casilla() {
+    public Cell() {
         this.n = 0;
         this.valida = true;
     }

@@ -1,33 +1,32 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package SolucionManual;
 
 import java.awt.Graphics;
 import static java.lang.System.exit;
 import javax.swing.JPanel;
 
-public class AjedrezReinas extends JPanel {
+/**
+ *
+ * @author Izar Castorina, Juanjo Torres, Lisandro Rocha
+ */
+public class QueenChess extends JPanel {
 
     public static int tamaño = 10;
     public static int empezarx = 0; //fila
     public static int empezary = 0; //columna
 
     private static int Ndamas = 0;
-    public static Casilla[][] tablero = new Casilla[tamaño][tamaño];
+    public static Cell[][] tablero = new Cell[tamaño][tamaño];
 
-    public AjedrezReinas() {
+    public QueenChess() {
         if (tamaño > 3) {
 
             crearcasillas();
 
             if (empezarx != 0) {
                 meterdama(empezary, empezarx);
-                metodebacktracking(0, 0);
+                backtracking(0, 0);
             } else {
-                metodebacktracking(empezary, empezarx);
+                backtracking(empezary, empezarx);
             }
 
             if (Ndamas != tamaño) {
@@ -42,7 +41,7 @@ public class AjedrezReinas extends JPanel {
 
     }
 
-    public void metodebacktracking(int columna, int fila) {
+    public final void backtracking(int columna, int fila) {
 
         columna--;
         while (columna != tamaño - 1) {
@@ -63,9 +62,9 @@ public class AjedrezReinas extends JPanel {
                     }
                 } else {
                     if (Damaenestafila(fila + 1)) {
-                        metodebacktracking(0, fila + 2);
+                        backtracking(0, fila + 2);
                     } else {
-                        metodebacktracking(0, fila + 1);
+                        backtracking(0, fila + 1);
                     }
                     quitardama(columna, fila);
                 }
@@ -84,7 +83,7 @@ public class AjedrezReinas extends JPanel {
         return false;
     }
 
-    public void meterdama(int i, int j) {
+    public final void meterdama(int i, int j) {
         tablero[i][j].setN(1); //colocar dama
         Ndamas++;
         actualizar();
@@ -280,7 +279,7 @@ public class AjedrezReinas extends JPanel {
     public static void crearcasillas() {
         for (int i = 0; i < tamaño; i += 1) {
             for (int j = 0; j < tamaño; j += 1) {
-                Casilla casilla = new Casilla();
+                Cell casilla = new Cell();
                 tablero[i][j] = casilla;
             }
         }

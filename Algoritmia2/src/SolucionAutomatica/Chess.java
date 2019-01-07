@@ -1,16 +1,20 @@
 package SolucionAutomatica;
 
-import static SolucionAutomatica.AjedrezReinasNsol.crearcasillas;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import static SolucionAutomatica.AjedrezReinasNsol.size;
-import static SolucionAutomatica.AjedrezReinasNsol.solutions;
+import static SolucionAutomatica.QueenChess.size;
+import static SolucionAutomatica.QueenChess.solutions;
+import static SolucionAutomatica.QueenChess.createCells;
 
-public class AjedrezNsol extends JPanel {
+/**
+ *
+ * @author Izar Castorina, Juanjo Torres, Lisandro Rocha
+ */
+public class Chess extends JPanel {
 
     public static boolean show = false;
 
@@ -36,7 +40,7 @@ public class AjedrezNsol extends JPanel {
 
         for (int i = 0; i <= (size - 1) * 50; i += 50) {
             for (int j = 0; j <= (size - 1) * 50; j += 50) {
-                if (AjedrezReinasNsol.table[x][y].getN() == 1) {
+                if (QueenChess.table[x][y].getNum() == 1) {
                     g.drawImage(imagen.getImage(), i, j, 50, 50, null);
                 }
                 y++;
@@ -45,6 +49,7 @@ public class AjedrezNsol extends JPanel {
             x++;
         }
         x = 0;
+        
         if (show == true) {
             g.setColor(Color.RED);
             Font f2 = new Font("Papyrus", Font.PLAIN, 30);
@@ -59,20 +64,20 @@ public class AjedrezNsol extends JPanel {
     }
 
     public static void main(String[] args) {
-        crearcasillas();
+        createCells();
         JFrame frame = new JFrame();
         frame.setSize((int) size * 50 + 18, size * 50 + 47);
-        frame.getContentPane().add(new AjedrezNsol());
+        frame.getContentPane().add(new Chess());
         frame.setLocationRelativeTo(null);
         frame.setBackground(Color.LIGHT_GRAY);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
-        AjedrezNsol e = new AjedrezNsol();
+        Chess e = new Chess();
         e.Start();
     }
 
     public void Start() {
-        AjedrezReinasNsol Aj = new AjedrezReinasNsol();
+        QueenChess Aj = new QueenChess();
         Aj.setVisible(true);
     }
 

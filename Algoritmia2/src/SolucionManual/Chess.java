@@ -5,10 +5,10 @@ import java.awt.Graphics;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import static SolucionManual.AjedrezReinas.crearcasillas;
-import static SolucionManual.AjedrezReinas.empezarx;
-import static SolucionManual.AjedrezReinas.empezary;
-import static SolucionManual.AjedrezReinas.tamaño;
+import static SolucionManual.QueenChess.crearcasillas;
+import static SolucionManual.QueenChess.empezarx;
+import static SolucionManual.QueenChess.empezary;
+import static SolucionManual.QueenChess.tamaño;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,8 +19,12 @@ import javax.swing.JLabel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 
-public class Ajedrez extends JPanel {
-
+/**
+ *
+ * @author Izar Castorina, Juanjo Torres, Lisandro Rocha
+ */
+public class Chess extends JPanel {
+    
     @Override
     public void paint(Graphics g) {
         ImageIcon imagen = new ImageIcon(new ImageIcon(getClass().getResource("chess.png")).getImage());
@@ -43,7 +47,7 @@ public class Ajedrez extends JPanel {
 
         for (int i = 0; i <= (tamaño - 1) * 50; i += 50) {
             for (int j = 0; j <= (tamaño - 1) * 50; j += 50) {
-                if (AjedrezReinas.tablero[x][y].getN() == 1) {
+                if (QueenChess.tablero[x][y].getN() == 1) {
                     g.drawImage(imagen.getImage(), i, j, 50, 50, null);
                 }
                 y++;
@@ -57,7 +61,6 @@ public class Ajedrez extends JPanel {
     }
 
     public static void main(String[] args) {
-        
         
         JFrame select_f = new JFrame("Elige la posición de inicio");
         JPanel select_p = new JPanel();
@@ -113,17 +116,17 @@ public class Ajedrez extends JPanel {
         crearcasillas();
         JFrame frame = new JFrame();
         frame.setSize((int) tamaño * 50 + 18, tamaño * 50 + 47);
-        frame.getContentPane().add(new Ajedrez());
+        frame.getContentPane().add(new Chess());
         frame.setLocationRelativeTo(null);
         frame.setBackground(Color.LIGHT_GRAY);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
-        Ajedrez e = new Ajedrez();
+        Chess e = new Chess();
         e.Start();
     }
 
     public void Start() {
-        AjedrezReinas Aj = new AjedrezReinas();
+        QueenChess Aj = new QueenChess();
         Aj.setVisible(true);
     }
 
