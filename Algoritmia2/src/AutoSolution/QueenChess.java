@@ -11,7 +11,11 @@ public class QueenChess extends JPanel {
 
     public static int solutions = 0;
     private boolean founded = false;
+<<<<<<< HEAD
     public static int size = 8;
+=======
+    public static int size = 2;
+>>>>>>> 029367bb24e0b683c59b692423791ffb1d6ff4bd
     public static int x = 0; //row
     public static int y = 0; //culumna
 
