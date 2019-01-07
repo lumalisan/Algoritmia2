@@ -9,6 +9,8 @@ import javax.swing.JPanel;
 import static AutoSolution.QueenChess.size;
 import static AutoSolution.QueenChess.solutions;
 import static AutoSolution.QueenChess.createCells;
+import java.awt.Dimension;
+import javax.swing.BoxLayout;
 
 /**
  *
@@ -50,16 +52,7 @@ public class Chess extends JPanel {
         }
         x = 0;
         
-        if (show == true) {
-            g.setColor(Color.RED);
-            Font f2 = new Font("Papyrus", Font.PLAIN, 30);
-            g.setFont(f2);
-            g.drawString("Number of Solutions", (size / 2 * 50 - 85), (size / 2 * 50) - 20);
-            g.setColor(Color.RED);
-            Font f = new Font("Comic Sans MS", Font.BOLD, 90);
-            g.setFont(f);
-            g.drawString(solutions + "", (size / 2 * 50 - 85), (size / 2 * 50) + 60);
-        }
+        
         repaint();
     }
 
@@ -75,6 +68,18 @@ public class Chess extends JPanel {
         frame.setAlwaysOnTop(true);
         QueenChess Aj = new QueenChess();
         Aj.setVisible(true);
+        
+        if (show == true) {
+            System.out.println("Showing results...");
+            JFrame results = new JFrame("Results");
+            results.setContentPane(new Results());
+             
+            results.setVisible(true);
+            results.setSize(new Dimension(300,260));
+            results.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            results.setLocationRelativeTo(null);
+            results.setAlwaysOnTop(true);
+        }
     }
 
 }
