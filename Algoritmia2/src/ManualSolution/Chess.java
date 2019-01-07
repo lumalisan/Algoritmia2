@@ -1,4 +1,4 @@
-package SolucionManual;
+package ManualSolution;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -14,17 +14,17 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
-import static SolucionManual.QueenChess.size;
-import static SolucionManual.QueenChess.y;
-import static SolucionManual.QueenChess.x;
-import static SolucionManual.QueenChess.createCells;
+import static ManualSolution.QueenChess.size;
+import static ManualSolution.QueenChess.y;
+import static ManualSolution.QueenChess.x;
+import static ManualSolution.QueenChess.createCells;
 
 /**
  *
  * @author Izar Castorina, Juanjo Torres, Lisandro Rocha
  */
 public class Chess extends JPanel {
-
+    
     public static void main(String[] args) {
         
         JFrame select_f = new JFrame("Elige la posición de inicio");
@@ -79,7 +79,7 @@ public class Chess extends JPanel {
     
     @Override
     public void paint(Graphics g) {
-        ImageIcon imagen = new ImageIcon(new ImageIcon(getClass().getResource("chess.png")).getImage());
+        ImageIcon imagen = new ImageIcon("chess.png");
         g.fillRect(0, 0, size * 50, size * 50);
 
         for (int i = 0; i <= (size * 50); i += 100) {

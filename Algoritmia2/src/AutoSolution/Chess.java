@@ -1,4 +1,4 @@
-package SolucionAutomatica;
+package AutoSolution;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -6,9 +6,9 @@ import java.awt.Graphics;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import static SolucionAutomatica.QueenChess.size;
-import static SolucionAutomatica.QueenChess.solutions;
-import static SolucionAutomatica.QueenChess.createCells;
+import static AutoSolution.QueenChess.size;
+import static AutoSolution.QueenChess.solutions;
+import static AutoSolution.QueenChess.createCells;
 
 /**
  *
@@ -21,7 +21,7 @@ public class Chess extends JPanel {
     @Override
     public void paint(Graphics g) {
         
-        ImageIcon imagen = new ImageIcon(new ImageIcon(getClass().getResource("chess.png")).getImage());
+        ImageIcon imagen = new ImageIcon("chess.png");
         g.fillRect(0, 0, size * 50, size * 50);
 
         for (int i = 0; i <= (size * 50); i += 100) {

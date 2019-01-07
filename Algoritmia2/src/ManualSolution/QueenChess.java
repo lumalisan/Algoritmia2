@@ -1,4 +1,4 @@
-package SolucionManual;
+package ManualSolution;
 
 import java.awt.Graphics;
 import static java.lang.System.exit;

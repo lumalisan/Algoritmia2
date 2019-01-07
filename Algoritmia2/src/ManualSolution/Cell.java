@@ -1,4 +1,4 @@
-package SolucionManual;
+package ManualSolution;
 
 /**
  *
@@ -16,7 +16,7 @@ public class Cell {
 
     @Override
     public String toString() {
-        return "Cell -->" + "number = " + num + "/ is correct = " + correct;
+        return "Cell --> " + "number = " + num + "/ is correct = " + correct;
     }
 
     public int getNum() {
