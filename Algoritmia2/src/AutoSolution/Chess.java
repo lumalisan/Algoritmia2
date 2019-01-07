@@ -66,17 +66,13 @@ public class Chess extends JPanel {
     public static void main(String[] args) {
         createCells();
         JFrame frame = new JFrame();
-        frame.setSize((int) size * 50 + 18, size * 50 + 47);
+        frame.setSize((int) size * 50, (size * 50) + 21);
         frame.getContentPane().add(new Chess());
         frame.setLocationRelativeTo(null);
         frame.setBackground(Color.LIGHT_GRAY);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
-        Chess e = new Chess();
-        e.Start();
-    }
-
-    public void Start() {
+        frame.setAlwaysOnTop(true);
         QueenChess Aj = new QueenChess();
         Aj.setVisible(true);
     }
