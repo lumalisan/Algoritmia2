@@ -15,7 +15,7 @@ public class QueenChess extends JPanel {
     public static int y = 0;
 
     private static int queens = 0;
-    public static Cell[][] table = new Cell[size][size];
+    public static Cell[][] table;
 
     public QueenChess() {
 
@@ -272,6 +272,7 @@ public class QueenChess extends JPanel {
     }
 
     public static void createCells() {
+        table = new Cell[size][size];
         for (int i = 0; i < size; i += 1) {
             for (int j = 0; j < size; j += 1) {
                 Cell casilla = new Cell();
