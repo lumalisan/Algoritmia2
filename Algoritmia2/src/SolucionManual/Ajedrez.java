@@ -9,6 +9,15 @@ import static SolucionManual.AjedrezReinas.crearcasillas;
 import static SolucionManual.AjedrezReinas.empezarx;
 import static SolucionManual.AjedrezReinas.empezary;
 import static SolucionManual.AjedrezReinas.tamaño;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JSeparator;
+import javax.swing.JTextField;
 
 public class Ajedrez extends JPanel {
 
@@ -48,6 +57,59 @@ public class Ajedrez extends JPanel {
     }
 
     public static void main(String[] args) {
+        
+        
+        JFrame select_f = new JFrame("Elige la posición de inicio");
+        JPanel select_p = new JPanel();
+        select_p.setLayout(new BoxLayout(select_p,BoxLayout.Y_AXIS));
+        select_f.setSize(280, 220);
+        JLabel posx_lab = new JLabel("Coordenada X");
+        posx_lab.setHorizontalAlignment(0);
+        JLabel posy_lab = new JLabel("Coordenada Y");
+        posy_lab.setHorizontalAlignment(0);
+        JLabel dim_lab = new JLabel("Tamaño del tablero");
+        dim_lab.setHorizontalAlignment(0);
+        JTextField posx_tf = new JTextField();
+        posx_tf.setAlignmentX(0);
+        JTextField posy_tf = new JTextField();
+        posy_tf.setAlignmentX(0);
+        JTextField dim_tf = new JTextField();
+        dim_tf.setAlignmentX(0);
+        JSeparator sep = new JSeparator(JSeparator.HORIZONTAL);
+        sep.setAlignmentX(0); sep.setMaximumSize(new Dimension(150,5));
+        JButton start = new JButton("Inicio");
+        start.setAlignmentX(0);
+        
+        select_p.add(Box.createVerticalStrut(10));
+        select_p.add(posx_lab); select_p.add(posx_tf);
+        select_p.add(Box.createVerticalStrut(5));
+        select_p.add(posy_lab); select_p.add(posy_tf);
+        select_p.add(Box.createVerticalStrut(5));
+        select_p.add(dim_lab); select_p.add(dim_tf);
+        select_p.add(Box.createVerticalStrut(3));
+        select_p.add(sep);
+        select_p.add(Box.createVerticalStrut(3));
+        select_p.add(start);
+        select_p.add(Box.createVerticalStrut(3));
+        
+        select_f.setContentPane(select_p);
+        select_f.setLocationRelativeTo(null);
+        select_f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        select_f.setResizable(false);
+        select_f.setVisible(true);
+        
+        start.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("lol");
+            }
+        });
+        
+        cont();
+        
+    }
+    
+    public static void cont() {
         crearcasillas();
         JFrame frame = new JFrame();
         frame.setSize((int) tamaño * 50 + 18, tamaño * 50 + 47);
@@ -63,7 +125,6 @@ public class Ajedrez extends JPanel {
     public void Start() {
         AjedrezReinas Aj = new AjedrezReinas();
         Aj.setVisible(true);
-
     }
 
 }
