@@ -1,6 +1,7 @@
 package AutoSolution;
 
 import java.awt.Graphics;
+import java.util.ArrayList;
 import javax.swing.JPanel;
 
 /**
@@ -17,6 +18,7 @@ public class QueenChess extends JPanel {
 
     private static int queens = 0;
     public static Cell[][] table;
+    public static ArrayList<Cell[][]> solutions_matrix = new ArrayList<Cell[][]>();
 
     public QueenChess() {
 
@@ -45,6 +47,21 @@ public class QueenChess extends JPanel {
                 add(culumna, row);
                 if (queens == size) {
                     solutions++;
+                    
+                    Cell[][] temp_table = new Cell[size][size];
+                    for (int i = 0; i < size; i += 1) {
+                        for (int j = 0; j < size; j += 1) {
+                            int val = table[i][j].getNum();
+                            Cell casilla = new Cell();                            
+                            temp_table[i][j] = casilla;
+                            temp_table[i][j].setNum(val);
+                        }
+                    }
+                    
+                    solutions_matrix.add(temp_table);
+                    
+                    paintTable();           // DEBUG
+                    System.out.println(""); // DEBUG
                     remove(culumna, row);
                 } else {
 
@@ -163,6 +180,7 @@ public class QueenChess extends JPanel {
                 }
             }
         }
+        
 
     }
 
@@ -252,6 +270,7 @@ public class QueenChess extends JPanel {
             }
 
         }
+        
         return true;
 
     }

@@ -11,6 +11,8 @@ import java.awt.Dimension;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 /**
  *
@@ -19,6 +21,7 @@ import java.io.InputStreamReader;
 public class Chess extends JPanel {
 
     public static boolean show = false;
+    static int pos = 0;
 
     @Override
     public void paint(Graphics g) {
@@ -90,6 +93,47 @@ public class Chess extends JPanel {
                         results.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                         results.setLocationRelativeTo(null);
                         results.setAlwaysOnTop(true);
+
+                        
+
+                        System.out.println("DEBUG ARRAYL SIZE: " + QueenChess.solutions_matrix.size());
+                        QueenChess.table = QueenChess.solutions_matrix.get(pos);
+
+                        results.addKeyListener(new KeyListener() {
+
+                            public void keyPressed(KeyEvent e) {
+
+                                int code = e.getKeyCode();
+                                if (pos < QueenChess.solutions_matrix.size()-1 && code == KeyEvent.VK_ENTER) {
+                                    pos++;
+                                    QueenChess.table = QueenChess.solutions_matrix.get(pos);
+                                }
+                                if (code == KeyEvent.VK_R)
+                                    pos = 0;
+                                    QueenChess.table = QueenChess.solutions_matrix.get(pos);
+
+                            }
+
+                            @Override
+                            public void keyTyped(KeyEvent e) {
+                            }
+
+                            @Override
+                            public void keyReleased(KeyEvent e) {
+                            }
+
+                        });
+
+                        System.out.println("IMPRIMIENDO TABLAS ALMACENADAS EN ARRAYLIST");
+                        for (int i = 0; i < QueenChess.solutions_matrix.size(); i++) {
+                            for (int j = 0; j < QueenChess.table.length; j++) {
+                                for (int k = 0; k < QueenChess.table.length; k++) {
+                                    System.out.print(QueenChess.solutions_matrix.get(i)[j][k].toString() + "\n");
+                                }
+                            }
+                            System.out.println("");
+                        }
+
                     }
 
                 } catch (IOException ex) {
